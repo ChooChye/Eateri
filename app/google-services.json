@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "746929355809",
+    "firebase_url": "https://eateri-fec7e.firebaseio.com",
+    "project_id": "eateri-fec7e",
+    "storage_bucket": "eateri-fec7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746929355809:android:fb5859149ec8d07bdcf760",
+        "android_client_info": {
+          "package_name": "com.example.eateri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746929355809-dkpqtq2qg4mo1jhj3c21b87vp7rtcc1i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eateri",
+            "certificate_hash": "79b81e310d85293510857867dd6cf1e81091cdb2"
+          }
+        },
+        {
+          "client_id": "746929355809-qead7k2qatu3r45326gv3he6nnptc3ck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_zDAjT3FJEIbAW4muE3nAQx4Uyw7gw2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746929355809-qead7k2qatu3r45326gv3he6nnptc3ck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,11 +12,11 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
 
-        <action
+       <!-- <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
+            app:destination="@id/nav_home_second" />-->
     </fragment>
-    <fragment
+    <!--<fragment
         android:id="@+id/nav_home_second"
         android:name="com.example.eateri.ui.home.HomeSecondFragment"
         android:label="@string/home_second"
@@ -28,7 +28,7 @@
         <argument
             android:name="myArg"
             app:argType="string" />
-    </fragment>
+    </fragment>-->
 
     <fragment
         android:id="@+id/nav_myOrders"
@@ -37,13 +37,24 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_myPayment"
-        android:name="com.example.eateri.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_myPayment"
-        tools:layout="@layout/fragment_slideshow" />
-    <fragment
         android:id="@+id/nav_myProfile"
         android:name="com.example.eateri.MyProfile"
         android:label="My Profile"
         tools:layout="@layout/fragment_myprofile" />
+
+    <fragment
+        android:id="@+id/nav_register"
+        android:name="com.example.eateri.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.eateri.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/myPaymentFragment"
+        android:name="com.example.eateri.MyPaymentFragment"
+        android:label="My Payment Methods"
+        tools:layout="@layout/fragment_my_payment" />
 </navigation>

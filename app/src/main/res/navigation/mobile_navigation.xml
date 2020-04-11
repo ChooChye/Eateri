@@ -32,19 +32,19 @@
 
     <fragment
         android:id="@+id/nav_myOrders"
-        android:name="com.example.eateri.ui.gallery.GalleryFragment"
+        android:name="com.example.eateri.ui.myOrders.myOrders"
         android:label="@string/menu_myOrders"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_myorders" />
 
     <fragment
         android:id="@+id/nav_myProfile"
-        android:name="com.example.eateri.MyProfile"
+        android:name="com.example.eateri.ui.myprofile.MyProfile"
         android:label="My Profile"
         tools:layout="@layout/fragment_myprofile" />
 
     <fragment
         android:id="@+id/nav_register"
-        android:name="com.example.eateri.RegisterFragment"
+        android:name="com.example.eateri.ui.register.RegisterFragment"
         android:label="Register"
         tools:layout="@layout/fragment_register" />
     <fragment

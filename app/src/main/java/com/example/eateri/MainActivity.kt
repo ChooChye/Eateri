@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(){
         navView.setupWithNavController(navController)
     }
 
-    //Logout Method
+    //Logout Methods
     private fun logout(){
         val fAuth: FirebaseAuth = FirebaseAuth.getInstance()
         FirebaseAuth.getInstance().signOut()

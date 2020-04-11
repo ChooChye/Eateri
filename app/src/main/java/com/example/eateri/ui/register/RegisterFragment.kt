@@ -1,4 +1,4 @@
-package com.example.eateri
+package com.example.eateri.ui.register
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,11 +13,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.common.util.NumberUtils
+import com.example.eateri.R
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_register.*
-import kotlin.toString as toString1
+import java.util.*
 
 
 /**
@@ -30,6 +34,8 @@ class RegisterFragment : Fragment() {
     private var email: String = ""
     private var mobileNo: Int? = 0
     private var password: String = ""
+    private lateinit var fStore : FirebaseFirestore
+    private lateinit var fAuth : FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -119,7 +125,14 @@ class RegisterFragment : Fragment() {
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
         //Make object
-        val user = User(uid, firstName, lastName, email, mobileNo!! , password)
+        val user = User(
+            uid,
+            firstName,
+            lastName,
+            email,
+            mobileNo!!,
+            password
+        )
         Log.d("RegisterScr", "First Name: $uid")
         Log.d("RegisterScr", "First Name: $firstName")
         Log.d("RegisterScr", "First Name: $lastName")
@@ -131,6 +144,24 @@ class RegisterFragment : Fragment() {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterScr", "User Saved")
+                val userId = fAuth.currentUser!!.uid
+                val docRef : DocumentReference = fStore.collection("users").document(userId)
+                val user: MutableMap<String, Any> = HashMap()
+                user["first"]   = firstName
+                user["last"]    = lastName
+                user["email"]   = email
+                user["hp"]      = mobileNo!!
+                docRef.collection("users")
+                    .add(user)
+                    .addOnSuccessListener(OnSuccessListener<DocumentReference> { documentReference ->
+                        Log.d(
+                            "Register",
+                            "DocumentSnapshot added with ID: " + documentReference.id
+                        )
+                    })
+                    .addOnFailureListener(OnFailureListener { e ->
+                        Log.e("Register","Error adding document",e)
+                    })
             }
     }
 

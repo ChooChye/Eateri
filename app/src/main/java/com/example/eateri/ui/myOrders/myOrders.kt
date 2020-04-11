@@ -1,4 +1,4 @@
-package com.example.eateri.ui.gallery
+package com.example.eateri.ui.myOrders
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.eateri.R
 
-class GalleryFragment : Fragment() {
+class myOrders : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var myOrdersViewModel: myOrdersViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_gallery, container, false)
+        myOrdersViewModel =
+                ViewModelProviders.of(this).get(myOrdersViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_myorders, container, false)
         val textView: TextView = root.findViewById(R.id.text_gallery)
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
+        myOrdersViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

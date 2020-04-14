@@ -1,41 +1,46 @@
 package com.example.eateri.ui.register
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.eateri.MainActivity
 import com.example.eateri.R
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_register.*
+import timber.log.Timber
 import java.util.*
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class RegisterFragment : Fragment() {
+class RegisterFragment : Fragment(){
 
-    private var firstName: String = ""
-    private var lastName: String = ""
-    private var email: String = ""
-    private var mobileNo: Int? = 0
-    private var password: String = ""
-    private lateinit var fStore : FirebaseFirestore
-    private lateinit var fAuth : FirebaseAuth
+    private var fStore         : FirebaseFirestore = FirebaseFirestore.getInstance()
+    private var fAuth          : FirebaseAuth = FirebaseAuth.getInstance()
+    private var fData          : FirebaseDatabase = FirebaseDatabase.getInstance()
+
+    private var userArrInfo : UserInfo = UserInfo()
+    private lateinit var userArrayList : UserItem
+    lateinit var test : EditText
+
+    lateinit var firstName: EditText
+    lateinit var lastName: EditText
+    lateinit var email: EditText
+    lateinit var mobileNo: EditText
+    lateinit var password: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,10 +50,7 @@ class RegisterFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_register, container, false)
         val links: TextView = v.findViewById(R.id.textView_goToLogin)
 
-        //Redirect if user session exists
-        /*if(FirebaseAuth.getInstance().currentUser == null){
-            this.findNavController().navigate(R.id.nav_home)
-        }*/
+        //Toast.makeText(context, firstName.toString(), Toast.LENGTH_SHORT).show()
 
         //Go to Login
         links.setOnClickListener { view: View ->
@@ -58,119 +60,120 @@ class RegisterFragment : Fragment() {
         v.findViewById<Button>(R.id.button_register).setOnClickListener {
             registerUser()
         }
+        firstName = v.findViewById(R.id.editText_fName)
+        lastName = v.findViewById(R.id.editText_lName)
+        email = v.findViewById(R.id.editText_email)
+        mobileNo = v.findViewById(R.id.editText_mobile)
+        password = v.findViewById(R.id.editText_reg_password)
         return v
     }
 
     //Registers the user
     private fun registerUser() {
-        firstName = editText_fName.text.toString()
-        lastName = editText_lName.text.toString()
-        email = editText_email.text.toString()
-        mobileNo = editText_mobile.text.toString().toIntOrNull()
-        password = editText_reg_password.text.toString()
+        closeKeyboard()
+        val rfirstName: String = firstName.text.toString()
+        val rlastName: String = lastName.text.toString()
+        val remail: String = email.text.toString()
+        val rmobileNo: String = mobileNo.text.toString()
+        val rpassword: String = password.text.toString()
         //Check Fields
-        if(TextUtils.isEmpty(firstName)){
-            editText_fName.error = "First Name is required"
+        if (TextUtils.isEmpty(rfirstName)) {
+            firstName.error = "First Name is required"
             return
         }
-        if(TextUtils.isEmpty(lastName)){
+        if (TextUtils.isEmpty(rlastName)) {
             editText_lName.error = "Last Name is required"
             return
         }
-        if (TextUtils.isEmpty(email)) {
-            editText_email.error = "Email is required"
+        if (TextUtils.isEmpty(remail)) {
+            email.error = "Email is required"
             //Toast.makeText(context, "Please fill up the empty fields", Toast.LENGTH_SHORT).show()
             return
         }
-        if(editText_reg_password.length() > 6){
-            editText_reg_password.error = "Password must be greater than 6 characters"
+        if (password.length() < 6) {
+            password.error = "Password must be greater than 5 characters"
             return
         }
-        if(TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(rpassword) || rpassword == "") {
             editText_reg_password.error = "Password is required"
             return
         }
-
+        if(TextUtils.isEmpty(rmobileNo)){
+            mobileNo.error = "Mobile Number is required"
+            return
+        }
+        //Debugging
+        Timber.d("Email: $email")
+        Timber.d("Password: $password")
+        Timber.d("Mobile: $mobileNo")
+        userArrayList = UserItem(
+            uid     = fAuth.uid.toString() ,
+            fName   = rfirstName,
+            lName   = rlastName,
+            email   = remail,
+            num     = rmobileNo.toInt(),
+            pass    = rpassword
+        )
         //Start progress
-        val progress : ProgressBar = progressBar_reg
+        val progress: ProgressBar = progressBar_reg
         progress.visibility = View.VISIBLE
 
-        //Debugging
-        Log.d("RegisterScr", "Email: $email")
-        Log.d("RegisterScr", "Password: $password")
-        Log.d("RegisterScr", "Mobile: $mobileNo")
+
 
         //Firebase
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+        fAuth.createUserWithEmailAndPassword(userArrayList.email, userArrayList.pass)
             .addOnCompleteListener {
                 if (!it.isSuccessful) {
                     return@addOnCompleteListener
                 } else {
-                    Log.d("RegisterScr", "UID: ${it.result!!.user!!.uid}")
-                    saveUserToFirebase()
+                    Timber.d("UID: ${it.result!!.user!!.uid}")
+                    saveUserToFirebase(userArrayList)
                     Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show()
-                    this.findNavController().navigate(R.id.nav_home)
-
+//                    this.findNavController().navigate(R.id.nav_home)
+                    val intent : Intent = Intent(context, MainActivity::class.java)
+                    startActivity(intent)
                 }
             }
             .addOnFailureListener {
-                Log.d("RegisterScr", "Error: ${it.message}")
+                Timber.d("Error: ${it.message}")
             }
     }
 
-    private fun saveUserToFirebase() {
-
+    private fun saveUserToFirebase(userItem: UserItem) {
         //Get instance
-        val uid = FirebaseAuth.getInstance().uid ?: ""
-        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val uid = fAuth.uid ?: ""
+        val ref = fData.getReference("/users/$uid")
 
-        //Make object
-        val user = User(
-            uid,
-            firstName,
-            lastName,
-            email,
-            mobileNo!!,
-            password
-        )
-        Log.d("RegisterScr", "First Name: $uid")
-        Log.d("RegisterScr", "First Name: $firstName")
-        Log.d("RegisterScr", "First Name: $lastName")
-        Log.d("RegisterScr", "First Name: $email")
-        Log.d("RegisterScr", "First Name: $mobileNo")
-        Log.d("RegisterScr", "First Name: $password")
-
-
-        ref.setValue(user)
+        //Debugging Purposes
+        Timber.d("UID: ${userItem.uid}")
+        Timber.d("First Name: ${userItem.fName}")
+        Timber.d("Last Name: ${userItem.lName}")
+        Timber.d("Email: ${userItem.email}")
+        Timber.d("Mobile No: ${userItem.num}")
+        Timber.d("Password: ${userItem.pass}")
+        //Success -> Save
+        ref.setValue(userItem)
             .addOnSuccessListener {
-                Log.d("RegisterScr", "User Saved")
+                Timber.d("User Saved")
                 val userId = fAuth.currentUser!!.uid
-                val docRef : DocumentReference = fStore.collection("users").document(userId)
-                val user: MutableMap<String, Any> = HashMap()
-                user["first"]   = firstName
-                user["last"]    = lastName
-                user["email"]   = email
-                user["hp"]      = mobileNo!!
-                docRef.collection("users")
-                    .add(user)
-                    .addOnSuccessListener(OnSuccessListener<DocumentReference> { documentReference ->
-                        Log.d(
-                            "Register",
-                            "DocumentSnapshot added with ID: " + documentReference.id
-                        )
-                    })
-                    .addOnFailureListener(OnFailureListener { e ->
-                        Log.e("Register","Error adding document",e)
-                    })
+                //Save to FireStore
+                val docRef: DocumentReference = fStore.collection("users").document(userId)
+                val users = HashMap<String, Any>()
+                users["FirstName"] = userItem.fName
+                users["LastName"] = userItem.lName
+                users["email"] = userItem.email
+                users["mobile_no"] = userItem.num
+                docRef.collection("users_info").document("user_list")
+                    .set(users)
+                    .addOnSuccessListener { Timber.d("DocumentSnapshot successfully written!") }
+                    .addOnFailureListener { e -> Timber.w("Error writing document $e") }
             }
     }
 
-    class User(
-        val uid: String,
-        val fName: String,
-        val lName: String,
-        val email: String,
-        val num: Int,
-        val pass: String
-    )
+    private fun closeKeyboard(){
+        val imm =
+            activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+    }
+
 }

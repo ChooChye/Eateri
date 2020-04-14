@@ -7,10 +7,10 @@
         android:visible="false"
         android:id="@+id/loggedInDrawer"
         android:checkableBehavior="single">
-        <!--<item
+        <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_account_circle_black_24dp"
-            android:title="Home" />-->
+            android:title="Home" />
         <item
             android:id="@+id/nav_myProfile"
             android:icon="@drawable/ic_account_circle_black_24dp"

@@ -1,4 +1,4 @@
-package com.example.eateri.ui.register
+package com.example.eateri.ui.datas
 
 class UserItem(
     var uid: String,

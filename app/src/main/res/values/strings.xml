@@ -21,4 +21,10 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_logout">Logout</string>
+    <string name="profile_fName">First Name</string>
+    <string name="profile_lname">Last Name</string>
+    <string name="profile_email">Email Address</string>
+    <string name="profile_title_personInfo">PERSONAL INFORMATION</string>
+    <string name="btnSave">SAVE</string>
+    <string name="btnCancel">CANCEL</string>
 </resources>

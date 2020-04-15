@@ -1,5 +1,6 @@
 package com.example.eateri
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -98,6 +99,8 @@ class MainActivity : AppCompatActivity(){
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+
 
 
 }

@@ -19,13 +19,10 @@ class myOrders : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        myOrdersViewModel =
-                ViewModelProviders.of(this).get(myOrdersViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_myorders, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        myOrdersViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+
+
         return root
     }
 }

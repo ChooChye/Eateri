@@ -22,10 +22,6 @@ import kotlinx.android.synthetic.main.fragment_register.*
 import timber.log.Timber
 import java.util.*
 
-
-/**
- * A simple [Fragment] subclass.
- */
 class RegisterFragment : Fragment(){
 
     private var fStore         : FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -60,7 +56,7 @@ class RegisterFragment : Fragment(){
         v.findViewById<Button>(R.id.button_register).setOnClickListener {
             registerUser()
         }
-        firstName = v.findViewById(R.id.editText_fName)
+        firstName = v.findViewById(R.id.editText_LoginID)
         lastName = v.findViewById(R.id.editText_lName)
         email = v.findViewById(R.id.editText_email)
         mobileNo = v.findViewById(R.id.editText_mobile)
@@ -130,7 +126,7 @@ class RegisterFragment : Fragment(){
                     saveUserToFirebase(userArrayList)
                     Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show()
 //                    this.findNavController().navigate(R.id.nav_home)
-                    val intent : Intent = Intent(context, MainActivity::class.java)
+                    val intent = Intent(context, MainActivity::class.java)
                     startActivity(intent)
                 }
             }

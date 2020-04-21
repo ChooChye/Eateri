@@ -1,13 +1,12 @@
 package com.example.eateri.ui.myprofile
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.example.eateri.R
@@ -15,17 +14,17 @@ import com.example.eateri.ui.datas.UserItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.dialog_layout.*
 import kotlinx.android.synthetic.main.fragment_myprofile.*
 import timber.log.Timber
 
 
 class MyProfile : Fragment() {
 
-    private var fAuth : FirebaseAuth = FirebaseAuth.getInstance()
-    private var fStore : FirebaseFirestore = FirebaseFirestore.getInstance()
-    lateinit var users : UserItem
-
-
+    private var fAuth               : FirebaseAuth = FirebaseAuth.getInstance()
+    private var fStore              : FirebaseFirestore = FirebaseFirestore.getInstance()
+    lateinit var users              : UserItem
+    lateinit var root               : View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,18 +38,56 @@ class MyProfile : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         initData() // Initiaize data
-        val root = inflater.inflate(R.layout.fragment_myprofile, container, false)
+        root = inflater.inflate(R.layout.fragment_myprofile, container, false)
         var fname       = root.findViewById<CardView>(R.id.cardView_fName)
         var lname       = root.findViewById<CardView>(R.id.cardView_lName)
         var email       = root.findViewById<CardView>(R.id.cardView_email)
         var mobile      = root.findViewById<CardView>(R.id.cardView_mobile)
         var btnSave     = root.findViewById<Button>(R.id.btn_profile_save)
         var btnCancel   = root.findViewById<Button>(R.id.btn_profile_cancel)
+        var passwordCard= root.findViewById<CardView>(R.id.cardView_password)
 
+
+
+        passwordCard.setOnClickListener{ passwordDialog() }
         btnSave.setOnClickListener{ saveEdit() }
         btnCancel.setOnClickListener { cancelEdit() }
 
         return root
+    }
+    private fun passwordDialog() {
+
+        // Initialize a new instance of
+        val inflater = this.layoutInflater;
+
+        val builder = AlertDialog.Builder(context)
+
+        // Set the alert dialog title
+        builder.setTitle("Change Password")
+
+        // Display a message on alert dialog
+        val viewDialog = inflater.inflate(R.layout.dialog_layout, null)
+        builder.setView(viewDialog)
+
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("SAVE") { dialog, which ->
+            // Do something when user press the positive button
+            //Toast.makeText(context, "Ok, we change the app background.", Toast.LENGTH_SHORT).show()
+
+            updatePassword(viewDialog)
+
+        }
+
+        // Display a neutral button on alert dialog
+        builder.setNeutralButton("Cancel"){_,_ ->
+            //Toast.makeText(context,"You cancelled the dialog.",Toast.LENGTH_SHORT).show()
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -167,10 +204,30 @@ class MyProfile : Fragment() {
             }
         //Toast.makeText(context, currentUser, Toast.LENGTH_LONG).show()
     }
+
     private fun closeKeyboard(){
         val imm =
             activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+    }
+
+    private fun updatePassword(view : View){
+        val newPassword = view.findViewById<EditText>(R.id.profile_dialog_password_editText)
+        val reNewPassword = view.findViewById<EditText>(R.id.profile_dialog_repassword_editText)
+
+        if(TextUtils.isEmpty(newPassword.text.toString())){
+            newPassword.error = "Please enter your new password"
+
+        }
+        if(TextUtils.isEmpty(reNewPassword.text.toString())){
+            newPassword.error = "Please re-enter your new password"
+
+        }
+        if(newPassword.text.toString() != reNewPassword.text.toString()){
+            Toast.makeText(context, "Incorrect Password", Toast.LENGTH_LONG).show()
+
+        }
+        Toast.makeText(context, "OK Password : ${newPassword}", Toast.LENGTH_LONG).show()
     }
 
 }

@@ -81,7 +81,7 @@ class LoginFragment : Fragment() {
                         val email : String? = currentUser.email
                         Log.d("Login", "Login user success")
                         //Navigate to Home
-                        val intent : Intent = Intent(context, MainActivity::class.java)
+                        val intent = Intent(context, MainActivity::class.java)
                         startActivity(intent)
                     }else{
                         Log.d("Login", "No user found")

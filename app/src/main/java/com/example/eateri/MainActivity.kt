@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity(){
                 R.id.nav_myOrders,
                 R.id.myPaymentFragment,
                 R.id.nav_setting,
+                R.id.nav_help,
                 R.id.nav_register,
                 R.id.loginFragment
             ), drawerLayout

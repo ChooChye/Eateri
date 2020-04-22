@@ -37,6 +37,11 @@
             android:title="@string/navSetting"
             android:id="@+id/nav_setting"
             />
+        <item
+            android:icon="@drawable/ic_help_black_24dp"
+            android:title="@string/help"
+            android:id="@+id/nav_help"
+            />
     </group>
     <group
         android:id="@+id/normal_drawer"

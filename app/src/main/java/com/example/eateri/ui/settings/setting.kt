@@ -1,6 +1,7 @@
 package com.example.eateri.ui.settings
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.navigation.fragment.findNavController
 
 import com.example.eateri.R
+import kotlinx.android.synthetic.main.fragment_setting.*
 
 /**
  * A simple [Fragment] subclass.
@@ -22,7 +24,9 @@ class setting : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        this.sw.setOnCheckedChangeListener { buttonView, isChecked ->
+
+
+        darkMode.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 AppCompatDelegate.getDefaultNightMode()
                 AppCompatDelegate.MODE_NIGHT_YES
@@ -30,8 +34,11 @@ class setting : Fragment() {
                 AppCompatDelegate.MODE_NIGHT_NO
             }
         }
+
+
         return inflater.inflate(R.layout.fragment_setting, container, false)
     }
+
 
 
 }

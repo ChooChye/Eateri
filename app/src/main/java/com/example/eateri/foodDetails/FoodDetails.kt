@@ -36,7 +36,6 @@ class FoodDetails : Fragment() {
         val args = FoodDetailsArgs.fromBundle(arguments!!)
         val restId = args.restID
         val position = args.position
-        dataSource.setRestId(restId)
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_food_details, container, false)
         /*tabLayout = v.findViewById(R.id.food_details_tabLayout)
@@ -47,7 +46,7 @@ class FoodDetails : Fragment() {
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)*/
 
-        Toast.makeText(context, "rest:${dataSource.getRestId()} | pos:$position", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "rest:$restId", Toast.LENGTH_LONG).show()
         val rest = dataSource.list.get(position)
         v.findViewById<TextView>(R.id.foodDetails_restName).text = "${rest.restName} - Menu"
         recyclerView = v.findViewById(R.id.food_details_recyclerView)

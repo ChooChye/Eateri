@@ -35,7 +35,7 @@ class FoodDetailsRecyclerAdapter(rid : Int) : RecyclerView.Adapter<CustomerViewH
 
         if(restId == dataSource.menu.get(position).restID){
             holder.view.foodContainer_imageView_food.setImageResource(image)
-            holder.view.foodContainer_textView_foodName.text = foodName
+            holder.view.foodContainer_textView_foodName.text = "rid: $restId | pos:$position"
             holder.view.foodContainer_textView_price.text = "RM ${foodPrice}"
         }
     }

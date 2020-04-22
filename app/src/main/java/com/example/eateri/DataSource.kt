@@ -4,32 +4,32 @@ import com.example.eateri.helpers.MenuList
 
 
 class DataSource {
-    var restID : Int = 0
 
     val list = listOf<RestaurantList>(
         RestaurantList(1000, "Masakan Malaysia", "OPEN"),
-        RestaurantList(1001, "Mixed Rice", "OPEN"),
+        RestaurantList(1001, "Chicken Rice", "OPEN"),
         RestaurantList(1002, "Vegetarian Mix Rice", "OPEN"),
-        RestaurantList(1000, "Chicken Rice", "OPEN"),
-        RestaurantList(1000, "Noodles", "OPEN")
+        RestaurantList(1003, "Noodles", "OPEN")
     )
 
     val menu = listOf<MenuList>(
-        MenuList(1000, R.drawable.rest2menu1, "Chicken Rice Combo", 4.00),
-        MenuList(1000, R.drawable.rest2menu1, "Quarter Combo", 6.00),
-        MenuList(1001, R.drawable.rest2menu2, "Nasi Lemak", 2.50)
+        MenuList(1000, R.drawable.rest1menu1, "Nasi Lemak", 2.50),
+        MenuList(1000, R.drawable.rest1menu2, "Mee Goreng", 5.00),
+        MenuList(1000, R.drawable.rest1menu3, "Nasi Goreng", 5.50),
+
+        //1001
+        MenuList(1001, R.drawable.rest2menu1, "Chicken Rice Combo", 4.80),
+        MenuList(1001, R.drawable.rest2menu1, "Quarter Combo", 6.00),
+
+        //1002
+        MenuList(1002, R.drawable.rest3menu1, "Thai Fried Rice", 5.80),
+        MenuList(1002, R.drawable.rest3menu1, "Wan Tan Mee", 5.00),
+
+        //1003
+        MenuList(1003, R.drawable.rest4menu1, "Loh Su Fun", 5.50),
+        MenuList(1003, R.drawable.rest4menu2, "Pan Mee", 6.00)
 
     )
-
-    fun setRestId(id:Int){
-        this.restID = id
-    }
-
-    fun getRestId() : Int{
-        return this.restID
-    }
-
-
 }
 
 

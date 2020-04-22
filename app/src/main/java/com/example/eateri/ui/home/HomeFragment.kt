@@ -25,7 +25,6 @@ class HomeFragment : Fragment() {
         recyclerList.layoutManager = GridLayoutManager(context,2)
         recyclerList.adapter = HomeAdapter()
 
-
         return root
     }
 

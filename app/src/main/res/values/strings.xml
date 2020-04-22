@@ -32,4 +32,11 @@
     <string name="cart_desc">desc</string>
     <string name="cart_rm">RM xx.xx</string>
     <string name="cart_foodimage">foodimage</string>
+    <string name="profile_fName">First Name</string>
+    <string name="profile_lname">Last Name</string>
+    <string name="profile_email">Email Address</string>
+    <string name="profile_title_personInfo">PERSONAL INFORMATION</string>
+    <string name="btnSave">SAVE</string>
+    <string name="btnCancel">CANCEL</string>
+    <string name="navSetting">Settings</string>
 </resources>

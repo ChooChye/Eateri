@@ -30,11 +30,12 @@ class HomeAdapter: RecyclerView.Adapter<CustomViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-
-        holder.v.grid_rest_title.text = dataSource.list.get(position).restName
-        holder.v.grid_rest_stat.text = dataSource.list.get(position).stat
+        val rest = dataSource.list.get(position)
+        holder.v.grid_rest_image.setImageResource(rest.img)
+        holder.v.grid_rest_title.text = rest.restName
+        holder.v.grid_rest_stat.text = rest.stat
         holder.v.cardView_grid.setOnClickListener {it: View ->
-            val id = dataSource.list.get(position).id
+            val id = rest.id
             it.findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavFoodDetails(id, position))
         }
     }

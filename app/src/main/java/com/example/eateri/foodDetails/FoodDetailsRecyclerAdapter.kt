@@ -13,8 +13,9 @@ import com.example.eateri.R
 import kotlinx.android.synthetic.main.food_details_container.view.*
 
 
-class FoodDetailsRecyclerAdapter(rid : Int) : RecyclerView.Adapter<CustomerViewHolder>(){
+class FoodDetailsRecyclerAdapter(rid : Int, restPos: Int) : RecyclerView.Adapter<CustomerViewHolder>(){
     private var restId = rid
+    private var restPos = restPos
     private val dataSource: DataSource = DataSource()
 
     override fun getItemCount(): Int {
@@ -28,16 +29,22 @@ class FoodDetailsRecyclerAdapter(rid : Int) : RecyclerView.Adapter<CustomerViewH
     }
 
     override fun onBindViewHolder(holder: CustomerViewHolder, position: Int) {
-        val menu = dataSource.menu.get(position)
-        var foodName    = menu.foodName
-        var foodPrice   = String.format("%.2f", menu.foodPrice)
-        var image       = menu.foodImageView
+        var collectedRest = arrayListOf<collectionRest>()
+        var index = 0
+        for(i in dataSource.menu.indices){
+            if(restId == dataSource.menu.get(i).restID){
+                var foodName    = dataSource.menu.get(index).foodName
+                var foodPrice   = String.format("%.2f", dataSource.menu.get(index).foodPrice)
+                var image       = dataSource.menu.get(index).foodImageView
 
-        if(restId == dataSource.menu.get(position).restID){
-            holder.view.foodContainer_imageView_food.setImageResource(image)
-            holder.view.foodContainer_textView_foodName.text = "rid: $restId | pos:$position"
-            holder.view.foodContainer_textView_price.text = "RM ${foodPrice}"
+                collectedRest.add(collectionRest(foodName, foodPrice, image))
+            }
+            index +=1
         }
+
+        holder.view.foodContainer_imageView_food.setImageResource(collectedRest.get(position).image)
+        holder.view.foodContainer_textView_foodName.text = collectedRest.get(position).foodName
+        holder.view.foodContainer_textView_price.text = "RM ${collectedRest.get(position).price}"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerViewHolder {
@@ -50,4 +57,8 @@ class FoodDetailsRecyclerAdapter(rid : Int) : RecyclerView.Adapter<CustomerViewH
 
 class CustomerViewHolder(val view : View) : RecyclerView.ViewHolder(view){}
 
-
+class collectionRest (
+    val foodName    : String,
+    val price       : String,
+    val image       : Int
+)

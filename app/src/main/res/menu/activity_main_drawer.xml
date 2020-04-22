@@ -30,6 +30,15 @@
 
     </group>
     <group
+        android:id="@+id/settingsNavGroup"
+        android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/navSetting"
+            android:id="@+id/nav_setting"
+            />
+    </group>
+    <group
         android:id="@+id/normal_drawer"
         android:checkableBehavior="single">
         <item

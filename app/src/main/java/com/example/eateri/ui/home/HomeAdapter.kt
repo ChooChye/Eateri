@@ -1,21 +1,23 @@
 package com.example.eateri.ui.home
 
-import android.provider.ContactsContract
+
+import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eateri.DataSource
 import com.example.eateri.R
-import com.example.eateri.RestaurantList
+import com.example.eateri.foodDetails.FoodDetails
 import kotlinx.android.synthetic.main.layout_card_list.view.*
-import java.util.ArrayList
 
 
 class HomeAdapter: RecyclerView.Adapter<CustomViewHolder>() {
 
     var dataSource : DataSource = DataSource()
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val layoutInflater = LayoutInflater.from(parent?.context)
@@ -28,11 +30,20 @@ class HomeAdapter: RecyclerView.Adapter<CustomViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.v.grid_rest_title.text = dataSource.list.get(position).restName
-        holder.v.grid_rest_stat.text = dataSource.list.get(position).stat
+        val rest = dataSource.list.get(position)
+        holder.v.grid_rest_image.setImageResource(rest.img)
+        holder.v.grid_rest_title.text = rest.restName
+        holder.v.grid_rest_stat.text = rest.stat
+        holder.v.cardView_grid.setOnClickListener {it: View ->
+            val id = rest.id
+            it.findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavFoodDetails(id, position))
+        }
     }
 
 }
 class CustomViewHolder (val v: View): RecyclerView.ViewHolder(v){
 
 }
+
+
+

@@ -11,9 +11,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.eateri.MainActivity
 import com.example.eateri.R
+import com.example.eateri.ui.datas.UserItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.DocumentReference
@@ -107,12 +107,12 @@ class RegisterFragment : Fragment(){
         Timber.d("Password: $password")
         Timber.d("Mobile: $mobileNo")
         userArrayList = UserItem(
-            uid     = fAuth.uid.toString() ,
-            fName   = rfirstName,
-            lName   = rlastName,
-            email   = remail,
-            num     = rmobileNo.toInt(),
-            pass    = rpassword
+            uid = fAuth.uid.toString(),
+            fName = rfirstName,
+            lName = rlastName,
+            email = remail,
+            num = rmobileNo.toInt(),
+            pass = rpassword
         )
         //Start progress
         val progress: ProgressBar = progressBar_reg
@@ -161,7 +161,7 @@ class RegisterFragment : Fragment(){
                 val users = HashMap<String, Any>()
                 users["FirstName"] = userItem.fName
                 users["LastName"] = userItem.lName
-                users["email"] = userItem.email
+                users["Email"] = userItem.email
                 users["mobile_no"] = userItem.num
                 docRef.collection("users_info").document("user_list")
                     .set(users)

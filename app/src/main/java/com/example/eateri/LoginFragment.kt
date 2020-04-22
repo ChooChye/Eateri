@@ -1,5 +1,6 @@
 package com.example.eateri
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
@@ -39,11 +41,13 @@ class LoginFragment : Fragment() {
         v.findViewById<Button>(R.id.button_login).setOnClickListener{
             loginUser()
         }
+        //v.findViewById<View>(R.id.fragment_login).setOnClickListener { closeKeyboard() }
 
         return v
     }
 
     private fun loginUser(){
+
         val idEmail = editText_username
         val idPass = editText_login_password
         val email = idEmail.text.toString()
@@ -77,7 +81,7 @@ class LoginFragment : Fragment() {
                         val email : String? = currentUser.email
                         Log.d("Login", "Login user success")
                         //Navigate to Home
-                        val intent : Intent = Intent(context, MainActivity::class.java)
+                        val intent = Intent(context, MainActivity::class.java)
                         startActivity(intent)
                     }else{
                         Log.d("Login", "No user found")
@@ -87,6 +91,12 @@ class LoginFragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(context, "Error #1039: Login Failed", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun closeKeyboard(){
+        val imm =
+            activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
 
 

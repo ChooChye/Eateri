@@ -25,18 +25,12 @@
     <string name="profile_fName">first name</string>
     <string name="profile_lname">last name</string>
     <string name="profile_title_personInfo">title</string>
-    <string name="btnCancel">cancel</string>
+    <string name="btnCancel">Cancel</string>
     <string name="btnSave">Save</string>
     <string name="profile_email">Email</string>
     <string name="cart_food">food</string>
     <string name="cart_desc">desc</string>
     <string name="cart_rm">RM xx.xx</string>
     <string name="cart_foodimage">foodimage</string>
-    <string name="profile_fName">First Name</string>
-    <string name="profile_lname">Last Name</string>
-    <string name="profile_email">Email Address</string>
-    <string name="profile_title_personInfo">PERSONAL INFORMATION</string>
-    <string name="btnSave">SAVE</string>
-    <string name="btnCancel">CANCEL</string>
     <string name="navSetting">Settings</string>
 </resources>

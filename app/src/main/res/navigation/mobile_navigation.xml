@@ -11,10 +11,15 @@
         android:name="com.example.eateri.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
-
-       <!-- <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />-->
+        <action
+            android:id="@+id/action_nav_home_to_nav_foodDetails"
+            app:destination="@id/nav_foodDetails" />
+        <argument
+            android:name="restID"
+            app:argType="integer" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
     </fragment>
     <!--<fragment
         android:id="@+id/nav_home_second"
@@ -57,4 +62,16 @@
         android:name="com.example.eateri.MyPaymentFragment"
         android:label="My Payment Methods"
         tools:layout="@layout/fragment_my_payment" />
+    <fragment
+        android:id="@+id/nav_foodDetails"
+        android:name="com.example.eateri.foodDetails.FoodDetails"
+        android:label="Eateri"
+        tools:layout="@layout/fragment_food_details" >
+        <argument
+            android:name="restID"
+            app:argType="integer" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
 </navigation>

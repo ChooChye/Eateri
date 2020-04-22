@@ -1,7 +1,9 @@
 package com.example.eateri
 
+
 class RestaurantList(
-    val restName : String,
-    //val img : String,
-    val stat: String
+    val id              : Int,
+    val restName        : String,
+    val stat            : String
+    //val img             : Int
 )

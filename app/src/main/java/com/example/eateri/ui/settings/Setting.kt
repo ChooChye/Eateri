@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 
 import com.example.eateri.R
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_setting.*
+
 
 /**
  * A simple [Fragment] subclass.

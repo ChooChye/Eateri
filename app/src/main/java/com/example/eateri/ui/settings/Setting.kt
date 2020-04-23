@@ -3,6 +3,7 @@ package com.example.eateri.ui.settings
 import android.content.res.Resources
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +22,14 @@ import com.google.android.material.snackbar.Snackbar
  * A simple [Fragment] subclass.
  */
 class Setting : Fragment() {
-    private lateinit var sw : Switch
+    private var sw:Switch?=null
+    private lateinit var sd: SaveData
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_setting, container, false)
         view.findViewById<Switch>(R.id.darkMode).setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -33,14 +37,17 @@ class Setting : Fragment() {
                 AppCompatDelegate.getDefaultNightMode()
                 AppCompatDelegate.MODE_NIGHT_YES
 
-
-
+               R.style.darktheme
             } else {
                 Snackbar.make(view, "NIGHT NO", Snackbar.LENGTH_LONG).show()
                 AppCompatDelegate.MODE_NIGHT_NO
                 R.style.AppTheme
             }
         }
+
+
         return view
     }
+
+
 }

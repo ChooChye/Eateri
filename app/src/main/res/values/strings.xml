@@ -34,4 +34,9 @@
     <string name="cart_foodimage">foodimage</string>
     <string name="navSetting">Settings</string>
     <string name="help">Help</string>
+
+    <string name="setting">Setting</string>
+    <string name="darkMode">Dark Mode</string>
+    <string name="language">Language</string>
+    <string name="eng">English</string>
 </resources>

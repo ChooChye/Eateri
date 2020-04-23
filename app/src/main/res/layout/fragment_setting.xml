@@ -29,7 +29,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Setting"
+            android:text="@string/setting"
             android:textColor="?attr/textcolor"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -56,7 +56,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Dark Mode"
+                    android:text="@string/darkMode"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +109,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Language"
+                    android:text="@string/language"
                     android:textColor="?attr/textcolor"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -125,12 +125,12 @@
                     android:layout_marginRight="16dp"
 
                     android:layout_marginBottom="16dp"
-                    android:text="English"
+                    android:text="@string/eng"
                     android:textColor="?attr/textcolor"
                     app:layout_constraintBottom_toBottomOf="parent"
 
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/label_lName" />
+                    />
 
 
 

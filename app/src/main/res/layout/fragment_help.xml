@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+ <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_help"
     tools:context=".ui.help.Help">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+     <androidx.constraintlayout.widget.ConstraintLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
 
-</FrameLayout>
+         <Button
+             android:id="@+id/btn_about"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginLeft="16dp"
+             android:layout_marginEnd="16dp"
+             android:layout_marginRight="16dp"
+             android:text="ABOUT"
+             app:layout_constraintBottom_toTopOf="@+id/btn_termsAndConditions"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent" />
+
+         <Button
+             android:id="@+id/btn_termsAndConditions"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginLeft="16dp"
+             android:layout_marginEnd="16dp"
+             android:layout_marginRight="16dp"
+             android:text="TERMS AND CONDITIONS"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/btn_about" />
+
+         <Button
+             android:id="@+id/btn_privacyAndPolicy"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginLeft="16dp"
+             android:layout_marginEnd="16dp"
+             android:layout_marginRight="16dp"
+             android:text="PRIVACY AND POLICY"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/btn_termsAndConditions" />
+
+     </androidx.constraintlayout.widget.ConstraintLayout>
+ </FrameLayout>

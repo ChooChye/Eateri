@@ -1,6 +1,7 @@
 package com.example.eateri
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.Menu
@@ -76,19 +77,7 @@ class MainActivity : AppCompatActivity(){
         }
         navView.setupWithNavController(navController)
 
-        findViewById<Switch>(R.id.darkMode).setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
 
-                AppCompatDelegate.getDefaultNightMode()
-                AppCompatDelegate.MODE_NIGHT_YES
-                setTheme( R.style.darktheme)
-
-            } else {
-
-                AppCompatDelegate.MODE_NIGHT_NO
-                setTheme(R.style.AppTheme)
-            }
-        }
     }
 
     //Logout Methods
@@ -121,5 +110,21 @@ class MainActivity : AppCompatActivity(){
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun setTheme(theme: Resources.Theme?) {
+        findViewById<Switch>(R.id.darkMode).setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+
+
+                setTheme( R.style.darktheme)
+
+            } else {
+
+            
+                setTheme(R.style.AppTheme)
+            }
+        }
+        super.setTheme(theme)
     }
 }

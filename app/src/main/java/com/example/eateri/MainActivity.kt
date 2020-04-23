@@ -2,6 +2,7 @@ package com.example.eateri
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -14,15 +15,16 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.room.Room
-import com.example.eateri.helpers.CartDB
 import com.example.eateri.ui.cart.CartActivity
 import com.google.firebase.auth.FirebaseAuth
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 class MainActivity : AppCompatActivity(){
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
 
+    private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,9 +34,6 @@ class MainActivity : AppCompatActivity(){
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         var navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
-
-
-
 
         //Check if user exists
         if (FirebaseAuth.getInstance().currentUser != null) {
@@ -82,7 +81,6 @@ class MainActivity : AppCompatActivity(){
         startActivity(intent)
     }
 
-
     //Override Methods
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -104,8 +102,4 @@ class MainActivity : AppCompatActivity(){
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-
-
-
 }

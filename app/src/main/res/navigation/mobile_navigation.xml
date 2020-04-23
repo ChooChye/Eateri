@@ -84,4 +84,14 @@
         android:name="com.example.eateri.ui.help.Help"
         android:label="Help"
         tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/vendorLoginFragment"
+        android:name="com.example.eateri.vendor.VendorLoginFragment"
+        android:label="fragment_vendorlogin"
+        tools:layout="@layout/fragment_vendorlogin" />
+    <fragment
+        android:id="@+id/vendorRegFragment"
+        android:name="com.example.eateri.vendor.VendorRegFragment"
+        android:label="fragment_vendorreg"
+        tools:layout="@layout/fragment_vendorreg" />
 </navigation>

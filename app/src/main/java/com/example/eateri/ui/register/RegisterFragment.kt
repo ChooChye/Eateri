@@ -44,6 +44,7 @@ class RegisterFragment : Fragment(){
     ): View? {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_register, container, false)
+
         val links: TextView = v.findViewById(R.id.textView_goToLogin)
 
         //Toast.makeText(context, firstName.toString(), Toast.LENGTH_SHORT).show()

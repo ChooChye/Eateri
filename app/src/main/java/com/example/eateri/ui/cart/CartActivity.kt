@@ -1,22 +1,15 @@
 package com.example.eateri.ui.cart
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.view.View
-import android.widget.Switch
 import androidx.recyclerview.widget.*
 import androidx.room.Room
 import com.example.eateri.MainActivity
 import com.example.eateri.R
 import com.example.eateri.helpers.CartDB
-import com.example.eateri.ui.datas.Cart
 import com.example.eateri.ui.datas.OrderList
-import com.example.eateri.ui.help.CartItems
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_cart.*
 
 class CartActivity() : AppCompatActivity() {

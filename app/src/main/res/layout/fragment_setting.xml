@@ -72,6 +72,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/label_darkMode"
                     android:textColor="?attr/textcolor"
+                    android:textAppearance="@style/AppTheme"
                     android:text=""
                    />
                 <!--
@@ -123,12 +124,14 @@
                     android:layout_marginRight="16dp"
 
                     android:layout_marginBottom="16dp"
-                    android:text="TextView"
+                    android:text="English"
                     android:textColor="?attr/textcolor"
                     app:layout_constraintBottom_toBottomOf="parent"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/label_lName" />
+
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,11 +44,7 @@ class Setting : Fragment() {
                 R.style.AppTheme
             }
         }
-
-
         return view
     }
-
-
 
 }

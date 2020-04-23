@@ -22,7 +22,7 @@ class VendorLoginFragment : Fragment() {
         val linkToRegister : TextView = vd.findViewById(R.id.btnVdReg)
 
         linkToRegister.setOnClickListener {view : View->
-            view.findNavController().navigate(R.id.nav_vendor)
+            view.findNavController().navigate(R.id.vendorLoginFragment)
         }
 
         return vd

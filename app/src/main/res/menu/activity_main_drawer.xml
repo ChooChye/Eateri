@@ -56,7 +56,7 @@
             android:title="Register" />
 
         <item
-            android:id="@+id/nav_vendor"
+            android:id="@+id/vendorLoginFragment"
             android:icon="@drawable/ic_restaurant_black_24dp"
             android:title="Vendor Login"/>
     </group>

@@ -35,7 +35,6 @@ class LoginFragment : Fragment() {
         linkToRegister.setOnClickListener {view : View->
             view.findNavController().navigate(R.id.nav_register)
         }
-
         //Login user
         v.findViewById<Button>(R.id.button_login).setOnClickListener{
             loginUser()

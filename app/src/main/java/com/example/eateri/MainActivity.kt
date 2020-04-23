@@ -20,6 +20,9 @@ import com.google.firebase.auth.FirebaseAuth
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Switch
+import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(){
 
@@ -72,6 +75,20 @@ class MainActivity : AppCompatActivity(){
             return@setOnMenuItemClickListener true
         }
         navView.setupWithNavController(navController)
+
+        findViewById<Switch>(R.id.darkMode).setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+
+                AppCompatDelegate.getDefaultNightMode()
+                AppCompatDelegate.MODE_NIGHT_YES
+                setTheme( R.style.darktheme)
+
+            } else {
+
+                AppCompatDelegate.MODE_NIGHT_NO
+                setTheme(R.style.AppTheme)
+            }
+        }
     }
 
     //Logout Methods
@@ -87,6 +104,7 @@ class MainActivity : AppCompatActivity(){
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+
         return true
     }
 

@@ -27,14 +27,13 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(){
 
-
+    private var sw:Switch?=null
     private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setTheme(R.style.AppTheme)
-
+       setTheme(R.style.AppTheme)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -113,18 +112,16 @@ class MainActivity : AppCompatActivity(){
     }
 
     override fun setTheme(theme: Resources.Theme?) {
-        findViewById<Switch>(R.id.darkMode).setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-
-
-                setTheme( R.style.darktheme)
-
-            } else {
-
-            
-                setTheme(R.style.AppTheme)
-            }
+        val sw:Switch=findViewById(R.id.darkMode)
+        if(sw.isChecked){
+            setTheme(R.style.darktheme)
         }
-        super.setTheme(theme)
+        else{
+            setTheme(R.style.AppTheme)
+        }
+
+       return super.setTheme(theme)
     }
+
+
 }

@@ -14,6 +14,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.room.Room
+import com.example.eateri.helpers.CartDB
 import com.example.eateri.ui.cart.CartActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -30,6 +32,8 @@ class MainActivity : AppCompatActivity(){
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         var navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
+
+
 
 
         //Check if user exists

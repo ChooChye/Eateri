@@ -193,9 +193,9 @@ class MyProfile : Fragment() {
                     addValue(profile_lName_data, last_name)
                     addValue(profile_email_data, email)
                     addValue(profile_hp_data, hp)
-                    Toast.makeText(context, "Display DOC ${first_name}", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, "Display DOC ${first_name}", Toast.LENGTH_LONG).show()
                 }else{
-                    Toast.makeText(context, "No document", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, "No document", Toast.LENGTH_LONG).show()
                     Timber.d("No document")
                 }
             }

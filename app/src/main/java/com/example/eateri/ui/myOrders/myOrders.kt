@@ -10,7 +10,7 @@ import com.example.eateri.R
 
 class MyOrders : Fragment() {
 
-    private lateinit var MyOrdersViewModel: MyOrdersViewModel
+    //private lateinit var MyOrdersViewModel: MyOrdersViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,8 +20,4 @@ class MyOrders : Fragment() {
 
         return inflater.inflate(R.layout.fragment_myorders, container, false)
     }
-}
-
-class MyOrdersViewModel {
-
 }

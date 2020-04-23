@@ -1,9 +1,7 @@
 package com.example.eateri.foodDetails
 
 import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +10,13 @@ import androidx.room.Room
 import com.example.eateri.DataSource
 import com.example.eateri.R
 import com.example.eateri.helpers.CartDB
-import com.example.eateri.ui.cart.CartActivity
 import com.example.eateri.ui.datas.OrderList
-import com.example.eateri.ui.datas.Cart
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.food_details_container.view.*
-import java.lang.Math.random
+import timber.log.Timber
 
 
-class FoodDetailsRecyclerAdapter(rid : Int, restPos: Int) : RecyclerView.Adapter<CustomerViewHolder>(){
+class FoodDetailsRecyclerAdapter(rid : Int, restPos: Int, private var appContext : Context) : RecyclerView.Adapter<CustomerViewHolder>(){
     private var restId = rid
     private var restPos = restPos
     private val dataSource: DataSource = DataSource()
@@ -54,28 +50,47 @@ class FoodDetailsRecyclerAdapter(rid : Int, restPos: Int) : RecyclerView.Adapter
         holder.view.foodContainer_textView_foodName.text = collectedRest.get(position).foodName
         holder.view.foodContainer_textView_price.text = "RM ${collectedRest.get(position).price}"
         holder.view.foodDetails_container.setOnClickListener {
-            val tapCount = 1
-            val orderList = ArrayList<OrderList>()
             val col = collectedRest.get(position)
-            val orderId = (10000..99999).shuffled().first()
-            Snackbar.make(holder.view, "rid: $orderId | foodList : ${col.foodName}, ${col.price}", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(holder.view, "fid: ${collectedRest.get(position).foodID} | foodList : ${col.foodName}, ${col.price}", Snackbar.LENGTH_LONG).show()
             //orderList.add(OrderList(orderId, 1, Cart(col.foodName, col.price)))
-            val db = Room.databaseBuilder(
-                holder.view.context,
-                CartDB::class.java, "CART.db"
+            Timber.d("Populating DB")
+            var db = Room.databaseBuilder(appContext,
+                CartDB::class.java, "cartDB.db"
             ).build()
 
+            Thread{
+                var entity = OrderList()
+                entity.foodItemID       = collectedRest.get(position).foodID
+                entity.foodName         = collectedRest.get(position).foodName
+                entity.foodPrice        = collectedRest.get(position).price
+                entity.orderQty = 1
+
+                //Log.d("@Cart", "${db.CartDao().getCartList().size}")
+                if(db.CartDao().getCartList().size == 0){
+                    db.CartDao().insertCart(entity)
+                    Log.d("@Cart","orderID: ${entity.orderID} | qty : ${entity.orderQty} | foodID : ${entity.foodItemID} / ${entity.foodItemID}")
+                }else{
+                    db.CartDao().getCartList().forEach{
+                        if(it.foodItemID == entity.foodItemID){
+                            entity.orderQty +=1
+                            Log.d("@Cart", "Add same food")
+                            db.CartDao().updateCart(entity)
+                        }else{
+                            Log.d("@Cart","orderID: ${it.orderID} | qty : ${it.orderQty} | foodID : ${it.foodItemID} / ${it.foodItemID}")
+                            db.CartDao().insertCart(entity)
+                        }
+                    }
+                }
+            }.start()
+            db.close() //close DB
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerViewHolder {
-        val layoutInflater = LayoutInflater.from(parent?.context)
+        val layoutInflater = LayoutInflater.from(parent.context)
         val cellForRow = layoutInflater.inflate(R.layout.food_details_container, parent, false)
         return CustomerViewHolder(cellForRow)
     }
-
-
-
 }
 
 class CustomerViewHolder(val view : View) : RecyclerView.ViewHolder(view){}

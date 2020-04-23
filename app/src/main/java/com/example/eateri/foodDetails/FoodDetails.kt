@@ -2,6 +2,7 @@ package com.example.eateri.foodDetails
 
 import android.R.attr.name
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +15,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.example.eateri.DataSource
 import com.example.eateri.R
+import com.example.eateri.helpers.CartDB
+import com.example.eateri.ui.datas.Cart
+import com.example.eateri.ui.datas.OrderList
 import com.example.eateri.ui.home.HomeFragmentArgs
+import timber.log.Timber
 
 
 /**
@@ -39,7 +45,8 @@ class FoodDetails : Fragment() {
         val position = args.position
 
         // Inflate the layout for this fragment
-        val v = inflater.inflate(R.layout.fragment_food_details, container, false)
+        var v = inflater.inflate(R.layout.fragment_food_details, container, false)
+
 
         //Toast.makeText(context, "rest:$restId | pos:$position", Toast.LENGTH_LONG).show()
         v.findViewById<ImageView>(R.id.foodDetails_cover).setImageResource(dataSource.list.get(position).img)
@@ -54,7 +61,7 @@ class FoodDetails : Fragment() {
                 DividerItemDecoration.VERTICAL
             )
         )
-        recyclerView.adapter = FoodDetailsRecyclerAdapter(restId, position)
+        recyclerView.adapter = FoodDetailsRecyclerAdapter(restId, position, activity!!.applicationContext)
 
         return v
     }

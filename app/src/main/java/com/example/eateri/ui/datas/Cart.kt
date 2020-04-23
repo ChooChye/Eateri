@@ -2,6 +2,13 @@ package com.example.eateri.ui.datas
 
 
 class Cart (
-    val foodName    : String,
-    val foodPrice   : String
+    var orderID: Int = 0,
+
+    var foodItemID : Int = 0,
+
+    var foodName: String = "",
+
+    var foodPrice: String = "",
+
+    var orderQty : Int = 0
 )

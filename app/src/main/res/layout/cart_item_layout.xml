@@ -48,7 +48,7 @@
         app:textSize="8sp" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/cartFoodPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

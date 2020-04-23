@@ -1,15 +1,14 @@
 package com.example.eateri.vendor
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.eateri.R
-
-/**
- * A simple [Fragment] subclass.
- */
+import kotlinx.android.synthetic.main.fragment_vendorlogin.*
 
 class VendorLoginFragment : Fragment() {
 
@@ -17,8 +16,17 @@ class VendorLoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vendorlogin, container, false)
+
+        val vd = inflater.inflate(R.layout.fragment_vendorlogin, container, false)
+
+        val linkToRegister : TextView = vd.findViewById(R.id.btnVdReg)
+
+        linkToRegister.setOnClickListener {view : View->
+            view.findNavController().navigate(R.id.vendorLoginFragment)
+        }
+
+        return vd
     }
+
 
 }

@@ -41,8 +41,8 @@ class VendorRegFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val vd=  inflater.inflate(R.layout.fragment_vendorreg, container, false)
+        val links: TextView = vd.findViewById(R.id.textView_goToLogin)
 
-        //Register User
         vd.findViewById<Button>(R.id.btnVdReg).setOnClickListener {
             registerUser()
         }

@@ -1,6 +1,7 @@
 package com.example.eateri
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.Menu
@@ -26,14 +27,13 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(){
 
-
+    private var sw:Switch?=null
     private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setTheme(R.style.AppTheme)
-
+       setTheme(R.style.AppTheme)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -76,19 +76,7 @@ class MainActivity : AppCompatActivity(){
         }
         navView.setupWithNavController(navController)
 
-        findViewById<Switch>(R.id.darkMode).setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
 
-                AppCompatDelegate.getDefaultNightMode()
-                AppCompatDelegate.MODE_NIGHT_YES
-                setTheme( R.style.darktheme)
-
-            } else {
-
-                AppCompatDelegate.MODE_NIGHT_NO
-                setTheme(R.style.AppTheme)
-            }
-        }
     }
 
     //Logout Methods
@@ -122,4 +110,18 @@ class MainActivity : AppCompatActivity(){
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    override fun setTheme(theme: Resources.Theme?) {
+        val sw:Switch=findViewById(R.id.darkMode)
+        if(sw.isChecked){
+            setTheme(R.style.darktheme)
+        }
+        else{
+            setTheme(R.style.AppTheme)
+        }
+
+       return super.setTheme(theme)
+    }
+
+
 }

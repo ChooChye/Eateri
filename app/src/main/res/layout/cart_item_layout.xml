@@ -1,78 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardElevation="8dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_margin="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/cartImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="FoodImage"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rest1menu1" />
 
-        <ImageView
-            android:contentDescription="@string/cart_foodimage"
-            android:id="@+id/img_food"
-            android:layout_width="80dp"
-            android:layout_height="80dp"/>
+    <TextView
+        android:id="@+id/cartFoodName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Food Name"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/cartImage"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+        android:id="@+id/cartQty"
+        android:layout_width="100dp"
 
-            <TextView
-                android:id="@+id/txt_food_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="@string/cart_food"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginStart="5dp" />
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/white"
+        app:backGroundColor="@color/grey"
+        app:finalNumber="99"
+        app:initialNumber="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:textColor="@android:color/black"
+        app:textSize="8sp" />
 
+    <TextView
+        android:id="@+id/cartFoodPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="RMX.XX"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/cartFoodName" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:weightSum="7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/txt_food_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_weight="6"
-                    android:text="@string/cart_rm"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-                    android:id="@+id/txt_food_amount"
-                    android:layout_weight="1"
-
-                    android:layout_width="60dp"
-                    android:layout_height="30dp"
-                    app:initialNumber="1"
-                    app:finalNumber="99"
-                    app:backGroundColor="@color/grey"
-                    android:background="@android:color/white"
-                    app:textSize="8sp"
-                    app:textColor="@android:color/black"
-                    />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

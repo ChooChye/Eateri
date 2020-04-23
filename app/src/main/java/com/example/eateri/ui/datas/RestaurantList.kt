@@ -1,4 +1,4 @@
-package com.example.eateri
+package com.example.eateri.ui.datas
 
 
 class RestaurantList(

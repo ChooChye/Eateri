@@ -1,9 +1,6 @@
 package com.example.eateri.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.eateri.RestaurantList
 
 class HomeViewModel : ViewModel() {
 

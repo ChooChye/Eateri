@@ -9,7 +9,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_account_circle_black_24dp"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="Home" />
         <item
             android:id="@+id/nav_myProfile"
@@ -54,6 +54,12 @@
             android:id="@+id/nav_register"
             android:icon="@drawable/ic_register_black_24dp"
             android:title="Register" />
+    </group>
 
+    <group>
+        <item
+            android:id="@+id/nav_vendor"
+            android:icon="@drawable/ic_restaurant_black_24dp"
+            android:title="Vendor Login"/>
     </group>
 </menu>

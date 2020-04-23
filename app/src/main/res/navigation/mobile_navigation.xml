@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_setting"
-        android:name="com.example.eateri.ui.settings.setting"
+        android:name="com.example.eateri.ui.settings.Setting"
         android:label="Setting"
         tools:layout="@layout/fragment_setting" />
     <fragment

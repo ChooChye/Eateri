@@ -1,14 +1,17 @@
 package com.example.eateri.ui.cart
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.FtsOptions
 import androidx.room.Room
+import com.example.eateri.MainActivity
 import com.example.eateri.R
 import com.example.eateri.helpers.CartDB
 import com.example.eateri.ui.datas.OrderList
@@ -34,8 +37,14 @@ class CartAdapter(dataset : ArrayList<OrderList>) : RecyclerView.Adapter<CartVie
         Log.d("@BB", "${dataset.size}")
         holder.view.cartFoodName.text = dataset.get(position).foodName
         holder.view.cartFoodPrice.text = dataset.get(position).foodPrice
-        if(holder.view.cartQty.number == 0.toString()){
-            Toast.makeText(holder.view.context, "${holder.view.cartQty.number}", Toast.LENGTH_SHORT).show()
+        holder.view.cart_deleteBtn.setOnClickListener {
+            //Toast.makeText(holder.view.context, "Delete Order", Toast.LENGTH_SHORT).show()
+            dataset.removeAt(position)
+
+            if(dataset.size == 0){
+                val intent = Intent(it.context, MainActivity::class.java)
+                it.context.startActivity(intent)
+            }
         }
     }
 

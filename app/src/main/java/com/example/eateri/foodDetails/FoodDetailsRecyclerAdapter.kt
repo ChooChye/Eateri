@@ -51,7 +51,8 @@ class FoodDetailsRecyclerAdapter(rid : Int, restPos: Int, private var appContext
         holder.view.foodContainer_textView_price.text = "RM ${collectedRest.get(position).price}"
         holder.view.foodDetails_container.setOnClickListener {
             val col = collectedRest.get(position)
-            Snackbar.make(holder.view, "fid: ${collectedRest.get(position).foodID} | foodList : ${col.foodName}, ${col.price}", Snackbar.LENGTH_LONG).show()
+            //Snackbar.make(holder.view, "fid: ${collectedRest.get(position).foodID} | foodList : ${col.foodName}, ${col.price}", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(holder.view, "Item added to cart", Snackbar.LENGTH_LONG).show()
             //orderList.add(OrderList(orderId, 1, Cart(col.foodName, col.price)))
             Timber.d("Populating DB")
             var db = Room.databaseBuilder(appContext,

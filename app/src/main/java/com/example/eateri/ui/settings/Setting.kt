@@ -38,15 +38,14 @@ class Setting : Fragment() {
         view.findViewById<Switch>(R.id.darkMode).setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
 
-                activity.apply { R.style.darktheme }
+           apply { R.style.darktheme }
                 Snackbar.make(view, "DARK MODE", Snackbar.LENGTH_LONG).show()
-
                 AppCompatDelegate.getDefaultNightMode()
                 AppCompatDelegate.MODE_NIGHT_YES
 
             } else {
 
-                activity.apply { R.style.AppTheme }
+                apply { R.style.AppTheme }
                 Snackbar.make(view, "LIGHT MODE", Snackbar.LENGTH_LONG).show()
                 AppCompatDelegate.MODE_NIGHT_NO
 

@@ -27,7 +27,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(){
 
-    private var sw:Switch?=null
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +74,8 @@ class MainActivity : AppCompatActivity(){
             logout()
             return@setOnMenuItemClickListener true
         }
+
+
         navView.setupWithNavController(navController)
 
 

@@ -39,7 +39,7 @@ class Setting : Fragment() {
             if (isChecked) {
 
                 activity.apply { R.style.darktheme }
-                Snackbar.make(view, "NIGHT YES", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(view, "DARK MODE", Snackbar.LENGTH_LONG).show()
 
                 AppCompatDelegate.getDefaultNightMode()
                 AppCompatDelegate.MODE_NIGHT_YES
@@ -47,7 +47,7 @@ class Setting : Fragment() {
             } else {
 
                 activity.apply { R.style.AppTheme }
-                Snackbar.make(view, "NIGHT NO", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(view, "LIGHT MODE", Snackbar.LENGTH_LONG).show()
                 AppCompatDelegate.MODE_NIGHT_NO
 
             }

@@ -4,7 +4,7 @@ import android.app.backup.SharedPreferencesBackupHelper
 import android.content.Context
 import android.content.SharedPreferences
 
-class SaveData (context:Context){
+class SaveData (val context: Context){
     private var sharedPreferences: SharedPreferences= context.getSharedPreferences("file", Context.MODE_PRIVATE)
 
     fun setDarkModeState(state:Boolean?){

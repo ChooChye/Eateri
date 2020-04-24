@@ -56,7 +56,7 @@ class LoginFragment : Fragment() {
             idEmail.error = "Email is required"
             return
         }
-        if(pass < 6.toString()){
+        if(pass.length < 6){
             idPass.error = "Password is incorrect"
         }
 

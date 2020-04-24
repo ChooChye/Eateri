@@ -87,11 +87,11 @@
     <fragment
         android:id="@+id/vendorLoginFragment"
         android:name="com.example.eateri.vendor.VendorLoginFragment"
-        android:label="fragment_vendorlogin"
+        android:label="Vendor Login"
         tools:layout="@layout/fragment_vendorlogin" />
     <fragment
         android:id="@+id/vendorRegFragment"
         android:name="com.example.eateri.vendor.VendorRegFragment"
-        android:label="fragment_vendorreg"
+        android:label="Vendor Registration"
         tools:layout="@layout/fragment_vendorreg" />
 </navigation>

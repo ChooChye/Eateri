@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -19,10 +20,8 @@ class VendorLoginFragment : Fragment() {
 
         val vd = inflater.inflate(R.layout.fragment_vendorlogin, container, false)
 
-        val linkToRegister : TextView = vd.findViewById(R.id.btnVdReg)
-
-        linkToRegister.setOnClickListener {view : View->
-            view.findNavController().navigate(R.id.vendorLoginFragment)
+        vd.findViewById<Button>(R.id.button_register).setOnClickListener {view : View->
+            view.findNavController().navigate(R.id.vendorRegFragment)
         }
 
         return vd
